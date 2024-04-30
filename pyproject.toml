@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "movie_editor"
+version = "0.1.0"
+description = ""
+authors = ["IamSBStakumi"]
+packages = [
+    {include = "src"}
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^1.5.1"
+isort = "^5.10.1"
+black = "^22.10.0"
+pyproject-flake8 = "^5.0.4.post1"
+pytest = "^7.2.0"
+jupyterlab = "^3.5.0"
+moviepy = "^1.0.3"
+
+[tool.isort]
+profile = "black"
+line_length = 120
+
+[tool.black]
+line-length = 120
+
+[tool.flake8]
+max-line-length = 120
+ignore = "E203,"
+
+[tool.pytest.ini_options]
+testpaths = ["tests",]
