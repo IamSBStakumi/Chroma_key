@@ -8,4 +8,7 @@ venv
 manuals
 
 temp*
-materials/**
+/materials/**
+!/materials/.gitkeep
+/outputs/**
+!/outputs/.gitkeep
