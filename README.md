@@ -18,7 +18,7 @@ docker container exec -it <Container Name> bash
 
 Save the video you wish to edit in `materials` before running the program.
 
-Then edit `FILENAME` in `src/movie.py`.
+Then edit `src/Variables.py` as you like.
 
 ```bash
 python src/movie.py
