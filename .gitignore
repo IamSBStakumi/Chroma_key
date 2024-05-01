@@ -1,3 +1,15 @@
 .pytest_cache
 
 **/__pycache__
+
+.pytest_cache
+.venv
+venv
+
+# dockerを使うのを一旦やめる
+Dockerfile
+docker/
+
+.dockerignore
+compose.yaml
+failed_Dockerfile
