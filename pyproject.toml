@@ -16,6 +16,8 @@ pyproject-flake8 = "^5.0.4.post1"
 pytest = "^7.2.0"
 jupyterlab = "^3.5.0"
 moviepy = "^1.0.3"
+opencv-python = "^4.9.0.80"
+numpy = "^1.26.4"
 
 [tool.isort]
 profile = "black"
