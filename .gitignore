@@ -5,11 +5,7 @@
 .pytest_cache
 .venv
 venv
+manuals
 
-# dockerを使うのを一旦やめる
-Dockerfile
-docker/
-
-.dockerignore
-compose.yaml
-failed_Dockerfile
+temp*
+materials/**

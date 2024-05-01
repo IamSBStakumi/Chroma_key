@@ -1,12 +1,26 @@
 # Chroma_key
 
-## How to use poetry
+<img src="https://img.shields.io/badge/-Python-F2C63C.svg?logo=python&style=for-the-badge">
+
+## Requirement
+
+- Docker version 26.1.0
+- Docker Compose version v2.26.1
+
+## Usage
 
 ```bash
-poetry add <package name>
+git clone https://github.com/IamSBStakumi/Chroma_key.git
+cd Chroma_key
+docker compose up -d --build
+docker container exec -it <Container Name> bash
 ```
 
-## Reference
+Save the video you wish to edit in `materials` before running the program.
 
-<https://qiita.com/nokoxxx1212/items/da1832468cbd9a762a46>
-<https://qiita.com/naozo-se/items/17cb127fab3783361ca4>
+Then edit `FILENAME` in `src/movie.py`.
+
+```bash
+python src/movie.py
+```
+

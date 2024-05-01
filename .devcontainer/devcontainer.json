@@ -1,6 +1,6 @@
 {
   "name": "Python_Docker",
-  "dockerfile": "../Dockerfile",
+  "dockerFile": "../Dockerfile",
   "extensions": [
     "ms-python",
     "ms-python.vscode-pylance",
