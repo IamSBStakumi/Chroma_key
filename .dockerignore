@@ -21,4 +21,5 @@ venv
 ._*
 
 .vscode
-/manuals
+/manuals/**
+/outputs/**
