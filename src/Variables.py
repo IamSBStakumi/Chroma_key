@@ -7,6 +7,6 @@ OUT_DIR = 'outputs'
 OUT_FILE = 'test.mp4'
 
 # COLOR: マスクする色 THR: しきい値 S: 距離
-COLOR = [0,255,0]
-THR = 20
-S = 3
+COLOR = [0,255,1]
+THR = 180
+S = 5
