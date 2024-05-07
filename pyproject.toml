@@ -19,6 +19,9 @@ moviepy = "^1.0.3"
 opencv-python = "^4.9.0.80"
 numpy = "^1.26.4"
 
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.7.0"
+
 [tool.isort]
 profile = "black"
 line_length = 120
