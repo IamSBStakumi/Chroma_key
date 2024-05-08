@@ -6,7 +6,11 @@ FILENAME = 'cow.mp4'
 OUT_DIR = 'outputs'
 OUT_FILE = 'test.mp4'
 
-# COLOR: マスクする色 THR: しきい値 S: 距離
-COLOR = [0,255,1]
-THR = 180
-S = 5
+# 透明度の計算式：d**s / (thr**s + d**s) (d: COLORとの距離、色差)
+# d>>thr の場合は 1、d<<thr の場合は 0に近づく
+# COLOR: マスクする色
+# THR: しきい値
+# S: 
+COLOR = [63,94,72]
+THR = 0
+S = 1

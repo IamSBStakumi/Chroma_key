@@ -19,5 +19,6 @@ output = final_video.write_videofile(
     codec="libx264",
     audio_codec="aac",
     temp_audiofile="temp-audio.m4a",
-    remove_temp=True
+    remove_temp=True,
+    frame = 30
 )
