@@ -3,6 +3,12 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit"
   },
+  // ライブラリの参照箇所を追加したが、不要だった
+  // インタプリタが標準のPythonだったことが原因
+  // インタプリタをPython~(.venv: Poetry)なるものに変更するとエラー解消できた
+  // "python.analysis.extraPaths": [
+  //   "/usr/local/lib/python3.11/site-packages"
+  // ],
   // black
   "editor.formatOnSave": true,
   "python.formatting.provider": "black",

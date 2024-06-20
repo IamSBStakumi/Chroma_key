@@ -1,5 +1,4 @@
 import moviepy.editor as mpe
-import cv2
 from Variables import *
 
 path = f'{MATERIALS}/{FILENAME}'
