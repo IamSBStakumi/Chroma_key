@@ -1,9 +1,6 @@
-import os
-
 import cv2
 import moviepy.editor as mpe
 import numpy as np
-from PIL import Image
 
 from Variables import *
 
@@ -12,19 +9,25 @@ path = f'{MATERIALS}/{FILENAME}'
 video = cv2.VideoCapture(path)
 width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
-background = mpe.ImageClip(f'{MATERIALS}/back.jpg').resize((width, height))
+# background = mpe.ImageClip(f'{MATERIALS}/back.jpg').resize((width, height))
+print("動画読み込み")
 
 # 動画の総フレーム数を取得
 frame_count = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
+print("フレーム数読み込み")
 
 # 書き出し用のwriteクラスを作成
 fps = video.get(cv2.CAP_PROP_FPS)
-fmt = cv2.VideoWriter.fourcc(*"H264")
-writer = cv2.VideoWriter("outputs/chroma.mp4", 0x00000020, fps, (width, height), 0)
+# writer = cv2.VideoWriter("outputs/chroma.mp4", 0x00000021, fps, (width, height), 0)
+fourcc = cv2.VideoWriter_fourcc(*"H264")
+writer = cv2.VideoWriter("outputs/chroma.mp4", fourcc, fps, (width, height), 0)
+
+print("ライタークラス作成")
 
 # 音声トラック書き出し
 clip_input = mpe.VideoFileClip(path)
 clip_input.audio.write_audiofile("outputs/audio.mp3")
+print("音声トラック読み込み")
 
 def create_frame(input_frame):
     # コントラスト調整
@@ -41,8 +44,9 @@ def create_frame(input_frame):
     # ノイズ除去
     result_image = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA) # RGBA形式に変換
     result_image[:, :, 3] = mask_image # アルファチャンネルにマスク画像を設定
+    output_frame = result_image
     
-    return result_image
+    return output_frame
 
 for i in range(frame_count):
     success, frame = video.read()
