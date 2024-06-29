@@ -7,12 +7,6 @@ from PIL import Image
 
 from Variables import *
 
-# パラメータ設定
-contrast_adjustment_value = 1.5  # コントラスト調整値
-chroma_key_color = np.uint8([[[0, 255, 0]]])  # クロマキー処理の指定色（緑色）
-chroma_key_threshold = 20  # クロマキー処理の閾値
-noise_removal_iterations = 50  # ノイズ除去の繰り返し回数
-
 # 動画と背景画像の読込
 path = f'{MATERIALS}/{FILENAME}'
 video = cv2.VideoCapture(path)
@@ -25,7 +19,7 @@ frame_count = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
 
 # 書き出し用のwriteクラスを作成
 fps = video.get(cv2.CAP_PROP_FPS)
-fmt = cv2.VideoWriter.fourcc(*"mp4v")
+fmt = cv2.VideoWriter.fourcc(*"H264")
 writer = cv2.VideoWriter("outputs/chroma.mp4", 0x00000020, fps, (width, height), 0)
 
 # 音声トラック書き出し
@@ -50,9 +44,6 @@ def create_frame(input_frame):
     
     return result_image
 
-
-
-# for i in range(1): # 1フレーム分を処理
 for i in range(frame_count):
     success, frame = video.read()
 
@@ -74,9 +65,3 @@ clip = mpe.VideoFileClip("outputs/chroma.mp4").subclip()
 clip.write_videofile("outputs/result.mp4", audio="outputs/audio.mp3")
 
 print("finish!")
-
-    # 画像保存
-    # cv2.imwrite(os.path.join("outputs/contrast.png"), contrast_image)
-    # cv2.imwrite(os.path.join("outputs/chromakey.png"), chroma_key_image)
-    # cv2.imwrite(os.path.join("outputs/mask.png"), mask_image)
-    # cv2.imwrite(os.path.join("outputs/result.png"), result_image)
