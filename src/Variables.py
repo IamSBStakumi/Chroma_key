@@ -1,6 +1,6 @@
 # 動画素材の置き場
 MATERIALS = 'materials'
-FILENAME = 'cow.mp4'
+FILENAME = 'First.mp4'
 
 # 出力するフォルダ/ファイル名を指定
 OUT_DIR = 'outputs'

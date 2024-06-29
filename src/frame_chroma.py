@@ -1,15 +1,17 @@
+import os
+
+import cv2
 import moviepy.editor as mpe
 import numpy as np
-import cv2
-import os
 from PIL import Image
+
 from Variables import *
 
 path = f'{MATERIALS}/{FILENAME}'
 video = cv2.VideoCapture(path)
 width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
-background = mpe.ImageClip(f'{MATERIALS}/back.png').resize((width, height))
+background = mpe.ImageClip(f'{MATERIALS}/back.jpg').resize((width, height))
 
 for i in range(1): # 1フレーム分を処理
     success, frame = video.read()
