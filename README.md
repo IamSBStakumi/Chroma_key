@@ -1,26 +1,37 @@
-# Chroma_key
+# Chroma_key_Movie_Creator
 
 <img src="https://img.shields.io/badge/-Python-F2C63C.svg?logo=python&style=for-the-badge">
 
 ## Requirement
 
-- Docker version 26.1.0
-- Docker Compose version v2.26.1
+- Ubuntu 22.04.4
+
+or
+
+- Windows 11
 
 ## Usage
 
-```bash
-git clone https://github.com/IamSBStakumi/Chroma_key.git
-cd Chroma_key
-docker compose up -d --build
-docker container exec -it <Container Name> bash
-```
-
-Save the video you wish to edit in `materials` before running the program.
-
-Then edit `src/Variables.py` as you like.
+### 1. Download
 
 ```bash
-python src/movie.py
+git clone https://github.com/IamSBStakumi/Chroma_key_Movie_Creator.git
+cd Chroma_key_Movie_Creator
 ```
 
+### 2. Create .venv
+
+```bash
+poetry install
+```
+
+### 3. Create Movie
+
+Save the video you wish to edit in `materials` directory before running the program.
+Also, save the picture you wish to use as the background.
+
+Then, edit `src/Variables.py` as you like.
+
+```bash
+poetry run python src/create_movie.py
+```
