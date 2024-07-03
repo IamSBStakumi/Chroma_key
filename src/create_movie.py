@@ -19,7 +19,7 @@ print("フレーム数読み込み")
 # 書き出し用のwriteクラスを作成
 fps = video.get(cv2.CAP_PROP_FPS)
 fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-writer = cv2.VideoWriter("outputs/chroma.mp4", fourcc, fps, (width, height), 1)
+writer = cv2.VideoWriter(f'{OUT_DIR}/{OUT_FILE}', fourcc, fps, (width, height), 1)
 print("ライタークラス作成")
 
 # 音声トラック書き出し
