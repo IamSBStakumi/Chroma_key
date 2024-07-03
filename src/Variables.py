@@ -6,7 +6,7 @@ FILENAME = 'Sample.mp4'
 
 # 出力するフォルダ/ファイル名を指定
 OUT_DIR = 'outputs'
-OUT_FILE = 'test.mp4'
+OUT_FILE = 'output.mp4'
 
 # パラメータ設定
 contrast_adjustment_value = 1.5  # コントラスト調整値
