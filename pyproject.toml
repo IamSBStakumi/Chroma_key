@@ -9,15 +9,15 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-isort = "^5.10.1"
-black = "^22.10.0"
-pyproject-flake8 = "^5.0.4.post1"
-pytest = "^7.2.0"
 opencv-python = "^4.9.0.80"
 numpy = "^1.26.4"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.7.0"
+pytest = "^8.2.2"
+isort = "^5.13.2"
+black = "^24.4.2"
+pyproject-flake8 = "^7.0.0"
 
 [tool.isort]
 profile = "black"
