@@ -1,5 +1,4 @@
 import cv2
-import moviepy.editor as mpe
 import numpy as np
 
 from Variables import *
@@ -9,7 +8,8 @@ path = f'{MATERIALS}/{FILENAME}'
 video = cv2.VideoCapture(path)
 width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
-# background = mpe.ImageClip(f'{MATERIALS}/back.jpg').resize((width, height))
+back = cv2.imread(f'{MATERIALS}/back.jpg')
+back = cv2.resize(back, (width, height))
 print("動画読み込み")
 
 # 動画の総フレーム数を取得
@@ -18,16 +18,14 @@ print("フレーム数読み込み")
 
 # 書き出し用のwriteクラスを作成
 fps = video.get(cv2.CAP_PROP_FPS)
-# writer = cv2.VideoWriter("outputs/chroma.mp4", 0x00000021, fps, (width, height), 0)
-fourcc = cv2.VideoWriter_fourcc(*"H264")
-writer = cv2.VideoWriter("outputs/chroma.mp4", fourcc, fps, (width, height), 0)
-
+fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+writer = cv2.VideoWriter("outputs/chroma.mp4", fourcc, fps, (width, height), 1)
 print("ライタークラス作成")
 
 # 音声トラック書き出し
-clip_input = mpe.VideoFileClip(path)
-clip_input.audio.write_audiofile("outputs/audio.mp3")
-print("音声トラック読み込み")
+# clip_input = mpe.VideoFileClip(path)
+# clip_input.audio.write_audiofile("outputs/audio.mp3")
+# print("音声トラック読み込み")
 
 def create_frame(input_frame):
     # コントラスト調整
@@ -42,20 +40,26 @@ def create_frame(input_frame):
     mask_image = cv2.bitwise_not(chroma_key_image)
 
     # ノイズ除去
-    result_image = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA) # RGBA形式に変換
-    result_image[:, :, 3] = mask_image # アルファチャンネルにマスク画像を設定
-    output_frame = result_image
+    transparent_image = cv2.cvtColor(input_frame, cv2.COLOR_BGR2BGRA) # RGBA形式に変換
+    transparent_image[:, :, 3] = mask_image # アルファチャンネルにマスク画像を設定
     
+    # 背景画像に重ねる
+    foreground = transparent_image[:, :, :3]
+    alpha = transparent_image[:, :, 3:] / 255.0
+    background = back.copy()
+
+    output_frame = cv2.convertScaleAbs(background * (1 - alpha) + foreground * alpha)
+
     return output_frame
 
 for i in range(frame_count):
-    success, frame = video.read()
+    success, movie_frame = video.read()
 
     if not success:
         print("failed reading")
         break
     
-    chroma_frame = create_frame(frame)
+    chroma_frame = create_frame(movie_frame)
 
     # 画像を動画へ書き出し
     writer.write(chroma_frame)
@@ -65,7 +69,7 @@ video.release()
 writer.release()
 
 # 音声トラックを動画に追加
-clip = mpe.VideoFileClip("outputs/chroma.mp4").subclip()
-clip.write_videofile("outputs/result.mp4", audio="outputs/audio.mp3")
+# clip = mpe.VideoFileClip("outputs/chroma.mp4").subclip()
+# clip.write_videofile("outputs/result.mp4", audio="outputs/audio.mp3")
 
 print("finish!")
